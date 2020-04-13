@@ -2,7 +2,7 @@ import numpy as np
 import pybullet_envs_local.deep_mimic.learning.agent_builder as AgentBuilder
 import pybullet_envs_local.deep_mimic.learning.tf_util as TFUtil
 from pybullet_envs_local.deep_mimic.learning.rl_agent import RLAgent
-from pybullet_utils.logger import Logger
+from pybullet_utils_local.logger import Logger
 import pybullet_data_local
 
 

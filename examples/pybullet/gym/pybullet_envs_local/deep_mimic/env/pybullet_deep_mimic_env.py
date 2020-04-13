@@ -2,7 +2,7 @@ import numpy as np
 import math
 from pybullet_envs_local.deep_mimic.env.env import Env
 from pybullet_envs_local.deep_mimic.env.action_space import ActionSpace
-from pybullet_utils import bullet_client
+from pybullet_utils_local import bullet_client
 import time
 from pybullet_envs_local.deep_mimic.env import motion_capture_data
 from pybullet_envs_local.deep_mimic.env import humanoid_stable_pd

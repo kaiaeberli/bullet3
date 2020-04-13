@@ -1,4 +1,4 @@
-from pybullet_utils import bullet_client
+from pybullet_utils_local import bullet_client
 import time
 import math
 import motion_capture_data

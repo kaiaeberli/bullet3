@@ -10,8 +10,8 @@ from pybullet_envs_local.deep_mimic.learning.rl_world import RLWorld
 from pybullet_envs_local.deep_mimic.learning.ppo_agent import PPOAgent
 
 import pybullet_data_local
-from pybullet_utils.arg_parser import ArgParser
-from pybullet_utils.logger import Logger
+from pybullet_utils_local.arg_parser import ArgParser
+from pybullet_utils_local.logger import Logger
 from pybullet_envs_local.deep_mimic.env.pybullet_deep_mimic_env import PyBulletDeepMimicEnv
 import sys
 import random

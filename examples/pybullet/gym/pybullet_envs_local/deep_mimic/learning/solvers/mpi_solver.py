@@ -6,9 +6,9 @@ except Exception:
   
 import numpy as np
 import pybullet_envs_local.deep_mimic.learning.tf_util as TFUtil
-import pybullet_utils.math_util as MathUtil
-import pybullet_utils.mpi_util as MPIUtil
-from pybullet_utils.logger import Logger
+import pybullet_utils_local.math_util as MathUtil
+import pybullet_utils_local.mpi_util as MPIUtil
+from pybullet_utils_local.logger import Logger
 
 from pybullet_envs_local.deep_mimic.learning.solvers.solver import Solver
 

@@ -1,4 +1,4 @@
-from pybullet_utils.logger import Logger
+from pybullet_utils_local.logger import Logger
 logger = Logger()
 logger.configure_output_file("e:/mylog.txt")
 for i in range(10):

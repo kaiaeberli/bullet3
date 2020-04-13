@@ -1,4 +1,4 @@
-import pybullet_utils.mpi_util as MPIUtil
+import pybullet_utils_local.mpi_util as MPIUtil
 """
 
 Some simple logging functionality, inspired by rllab's logging.

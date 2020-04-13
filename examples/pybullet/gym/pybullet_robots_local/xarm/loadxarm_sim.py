@@ -3,7 +3,7 @@ import pybullet_data_local as pd
 import math
 import time
 import numpy as np
-import pybullet_robots.xarm.xarm_sim as xarm_sim
+import pybullet_robots_local.xarm.xarm_sim as xarm_sim
 
 p.connect(p.GUI)
 p.setAdditionalSearchPath(pd.getDataPath())

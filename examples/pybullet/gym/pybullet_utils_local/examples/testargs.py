@@ -1,6 +1,6 @@
 import pybullet_data_local
-from pybullet_utils.arg_parser import ArgParser
-from pybullet_utils.logger import Logger
+from pybullet_utils_local.arg_parser import ArgParser
+from pybullet_utils_local.logger import Logger
 import sys
 
 

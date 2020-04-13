@@ -1,5 +1,5 @@
-import pybullet_utils.bullet_client as bc
-import pybullet_utils.urdfEditor as ed
+import pybullet_utils_local.bullet_client as bc
+import pybullet_utils_local.urdfEditor as ed
 import pybullet
 import pybullet_data_local
 import time

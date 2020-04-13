@@ -4,7 +4,7 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(os.path.dirname(currentdir))
 os.sys.path.insert(0, parentdir)
 
-from pybullet_utils.bullet_client import BulletClient
+from pybullet_utils_local.bullet_client import BulletClient
 import pybullet_data_local
 
 jointTypes = [

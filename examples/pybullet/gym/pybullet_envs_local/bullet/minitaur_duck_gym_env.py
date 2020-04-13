@@ -17,7 +17,7 @@ from gym import spaces
 from gym.utils import seeding
 import numpy as np
 import pybullet
-import pybullet_utils.bullet_client as bc
+import pybullet_utils_local.bullet_client as bc
 from . import minitaur
 import pybullet_data_local
 from . import minitaur_env_randomizer

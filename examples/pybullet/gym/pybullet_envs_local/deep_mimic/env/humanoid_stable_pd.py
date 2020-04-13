@@ -1,4 +1,4 @@
-from pybullet_utils import pd_controller_stable
+from pybullet_utils_local import pd_controller_stable
 from pybullet_envs_local.deep_mimic.env import humanoid_pose_interpolator
 import math
 

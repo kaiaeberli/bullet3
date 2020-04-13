@@ -1,6 +1,6 @@
 import json
 import numpy as np
-import pybullet_utils.math_util as MathUtil
+import pybullet_utils_local.math_util as MathUtil
 
 
 class ExpParams(object):

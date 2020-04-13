@@ -17,11 +17,11 @@ import time
 import subprocess
 import pybullet as p2
 import pybullet_data_local
-import pybullet_utils.bullet_client as bc
+import pybullet_utils_local.bullet_client as bc
 from pkg_resources import parse_version
 from pybullet_envs_local.deep_mimic.env.pybullet_deep_mimic_env import PyBulletDeepMimicEnv
-from pybullet_utils.arg_parser import ArgParser
-from pybullet_utils.logger import Logger
+from pybullet_utils_local.arg_parser import ArgParser
+from pybullet_utils_local.logger import Logger
 
 logger = logging.getLogger(__name__)
 

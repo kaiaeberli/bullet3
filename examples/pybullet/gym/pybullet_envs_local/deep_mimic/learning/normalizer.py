@@ -1,7 +1,7 @@
 import numpy as np
 import copy
-import pybullet_utils.mpi_util as MPIUtil
-from pybullet_utils.logger import Logger
+import pybullet_utils_local.mpi_util as MPIUtil
+from pybullet_utils_local.logger import Logger
 
 
 class Normalizer(object):

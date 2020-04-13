@@ -1,7 +1,7 @@
 import pybullet as p1
-from pybullet_utils import bullet_client
+from pybullet_utils_local import bullet_client
 import pybullet_data_local
-from pybullet_utils import pd_controller_stable
+from pybullet_utils_local import pd_controller_stable
 
 import time
 import motion_capture_data

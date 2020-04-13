@@ -9,9 +9,9 @@ print("parentdir=", parentdir)
 
 from pybullet_envs_local.deep_mimic.env.pybullet_deep_mimic_env import PyBulletDeepMimicEnv
 from pybullet_envs_local.deep_mimic.learning.rl_world import RLWorld
-from pybullet_utils.logger import Logger
+from pybullet_utils_local.logger import Logger
 from pybullet_envs_local.deep_mimic.testrl import update_world, update_timestep, build_world
-import pybullet_utils.mpi_util as MPIUtil
+import pybullet_utils_local.mpi_util as MPIUtil
 
 args = []
 world = None

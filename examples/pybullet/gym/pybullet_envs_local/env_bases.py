@@ -3,7 +3,7 @@ import numpy as np
 import pybullet
 import os
 
-from pybullet_utils import bullet_client
+from pybullet_utils_local import bullet_client
 
 from pkg_resources import parse_version
 

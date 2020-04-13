@@ -1,5 +1,6 @@
 import numpy as np
 from mpi4py import MPI
+#if error, reinstall MS MPI from here: https://stackoverflow.com/questions/14004457/error-loading-mpi-dll-in-mpi4py
 
 ROOT_PROC_RANK = 0
 

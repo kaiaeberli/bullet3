@@ -12,7 +12,7 @@ import numpy as np
 import pybullet
 from . import racecar
 import random
-import pybullet_utils.bullet_client as bc
+import pybullet_utils_local.bullet_client as bc
 import pybullet_data_local
 from pkg_resources import parse_version
 

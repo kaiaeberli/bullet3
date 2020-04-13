@@ -10,7 +10,7 @@ import pybullet
 import time
 import random
 
-from pybullet_utils.bullet_client import BulletClient
+from pybullet_utils_local.bullet_client import BulletClient
 from deep_mimic.env.motion_capture_data import MotionCaptureData
 
 # from pybullet_envs_local.deep_mimic.env.humanoid_stable_pd import HumanoidStablePd
