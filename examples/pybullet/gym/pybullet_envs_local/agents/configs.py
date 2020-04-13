@@ -25,7 +25,7 @@ from pybullet_envs_local.bullet import minitaur_gym_env
 from pybullet_envs_local.bullet import minitaur_duck_gym_env
 from pybullet_envs_local.bullet import minitaur_env_randomizer
 import pybullet_envs_local.bullet.minitaur_gym_env as minitaur_gym_env
-import pybullet_envs
+import pybullet_envs_local
 try:
   import tensorflow.compat.v1 as tf
 except Exception:

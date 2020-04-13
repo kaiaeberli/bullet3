@@ -7,7 +7,7 @@ os.sys.path.insert(0, parentdir)
 import pybullet
 import gym
 import numpy as np
-import pybullet_envs
+import pybullet_envs_local
 import time
 
 

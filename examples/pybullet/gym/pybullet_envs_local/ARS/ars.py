@@ -11,7 +11,7 @@ import os
 import numpy as np
 import gym
 from gym import wrappers
-import pybullet_envs
+import pybullet_envs_local
 import time
 import multiprocessing as mp
 from multiprocessing import Process, Pipe

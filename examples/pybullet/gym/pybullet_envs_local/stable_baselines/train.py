@@ -6,7 +6,7 @@
 # MIT License
 import argparse
 
-import pybullet_envs
+import pybullet_envs_local
 
 import gym
 import numpy as np

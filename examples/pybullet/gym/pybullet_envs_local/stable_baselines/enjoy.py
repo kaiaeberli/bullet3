@@ -11,7 +11,7 @@ import multiprocessing
 
 import gym
 import numpy as np
-import pybullet_envs
+import pybullet_envs_local
 
 from stable_baselines import SAC, TD3
 from pybullet_envs_local.stable_baselines.utils import TimeFeatureWrapper

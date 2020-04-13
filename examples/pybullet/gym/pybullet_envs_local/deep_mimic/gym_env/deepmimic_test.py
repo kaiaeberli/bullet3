@@ -1,5 +1,5 @@
 import gym
-import pybullet_envs
+import pybullet_envs_local
 import time
 
 #env = gym.make('HumanoidDeepMimicBackflipBulletEnv-v1')
