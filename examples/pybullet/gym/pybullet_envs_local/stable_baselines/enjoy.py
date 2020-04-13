@@ -1,7 +1,7 @@
 # Code adapted from https://github.com/araffin/rl-baselines-zoo
 # it requires stable-baselines to be installed
 # Colab Notebook: https://colab.research.google.com/drive/1nZkHO4QTYfAksm9ZTaZ5vXyC7szZxC3F
-# You can run it using: python -m pybullet_envs.stable_baselines.enjoy --algo td3 --env HalfCheetahBulletEnv-v0
+# You can run it using: python -m pybullet_envs_local.stable_baselines.enjoy --algo td3 --env HalfCheetahBulletEnv-v0
 # Author: Antonin RAFFIN
 # MIT License
 import os
@@ -14,7 +14,7 @@ import numpy as np
 import pybullet_envs
 
 from stable_baselines import SAC, TD3
-from pybullet_envs.stable_baselines.utils import TimeFeatureWrapper
+from pybullet_envs_local.stable_baselines.utils import TimeFeatureWrapper
 
 
 if __name__ == '__main__':

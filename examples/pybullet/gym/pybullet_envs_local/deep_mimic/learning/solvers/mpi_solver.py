@@ -5,12 +5,12 @@ except Exception:
   import tensorflow as tf
   
 import numpy as np
-import pybullet_envs.deep_mimic.learning.tf_util as TFUtil
+import pybullet_envs_local.deep_mimic.learning.tf_util as TFUtil
 import pybullet_utils.math_util as MathUtil
 import pybullet_utils.mpi_util as MPIUtil
 from pybullet_utils.logger import Logger
 
-from pybullet_envs.deep_mimic.learning.solvers.solver import Solver
+from pybullet_envs_local.deep_mimic.learning.solvers.solver import Solver
 
 
 class MPISolver(Solver):

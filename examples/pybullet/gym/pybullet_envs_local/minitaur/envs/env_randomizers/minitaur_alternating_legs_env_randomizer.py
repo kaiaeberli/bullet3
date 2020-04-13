@@ -11,8 +11,8 @@ parentdir = os.path.dirname(os.path.dirname(parentdir))
 os.sys.path.insert(0, parentdir)
 
 import numpy as np
-import tf.compat.v1 as tf
-from pybullet_envs.minitaur.envs import env_randomizer_base
+import tensorflow.compat.v1 as tf
+from pybullet_envs_local.minitaur.envs import env_randomizer_base
 
 # Absolute range.
 NUM_LEGS = 4

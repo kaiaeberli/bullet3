@@ -13,7 +13,7 @@ import math
 import re
 
 import numpy as np
-from pybullet_envs.minitaur.envs import motor
+from pybullet_envs_local.minitaur.envs import motor
 
 INIT_POSITION = [0, 0, .2]
 INIT_RACK_POSITION = [0, 0, 1]

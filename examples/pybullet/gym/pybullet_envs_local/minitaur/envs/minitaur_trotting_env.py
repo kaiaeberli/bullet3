@@ -4,7 +4,7 @@ import math
 
 from gym import spaces
 import numpy as np
-from pybullet_envs.minitaur.envs import minitaur_gym_env
+from pybullet_envs_local.minitaur.envs import minitaur_gym_env
 
 # TODO(tingnan): These constants should be moved to minitaur/minitaur_gym_env.
 NUM_LEGS = 4

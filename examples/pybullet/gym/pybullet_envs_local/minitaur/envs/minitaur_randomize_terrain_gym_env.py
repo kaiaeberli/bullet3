@@ -5,8 +5,8 @@ import os
 import numpy as np
 #from google3.pyglib import flags
 #from google3.pyglib import gfile
-from pybullet_envs.minitaur.envs import minitaur
-from pybullet_envs.minitaur.envs import minitaur_gym_env
+from pybullet_envs_local.minitaur.envs import minitaur
+from pybullet_envs_local.minitaur.envs import minitaur_gym_env
 
 #flags.DEFINE_string(
 #    'terrain_dir', '/cns/od-d/home/brain-minitaur/terrain_obj',
@@ -32,20 +32,28 @@ class MinitaurRandomizeTerrainGymEnv(minitaur_gym_env.MinitaurGymEnv):
     self._pybullet_client.setPhysicsEngineParameter(
         numSolverIterations=self._num_bullet_solver_iterations)
     self._pybullet_client.setTimeStep(self._time_step)
+
     terrain_visual_shape_id = -1
     terrain_mass = 0
-    terrain_position = [0, 0, 0]
-    terrain_orientation = [0, 0, 0, 1]
-    terrain_file_name = self.load_random_terrain(FLAGS.terrain_dir)
+    terrain_position = [-100, -100, -2]
+    import math
+    terrain_orientation = self._pybullet_client.getQuaternionFromEuler([math.pi/2, 0, 0])
+    #terrain_file_name = self.load_random_terrain(FLAGS.terrain_dir)
+    terrain_file_name = "gimp_overlay_out.obj"
+    mesh_scale = [2] * 3
+
     terrain_collision_shape_id = self._pybullet_client.createCollisionShape(
         shapeType=self._pybullet_client.GEOM_MESH,
         fileName=terrain_file_name,
         flags=1,
-        meshScale=[0.5, 0.5, 0.5])
+        meshScale=mesh_scale)
+
     self._pybullet_client.createMultiBody(terrain_mass, terrain_collision_shape_id,
                                           terrain_visual_shape_id, terrain_position,
                                           terrain_orientation)
+
     self._pybullet_client.setGravity(0, 0, -10)
+
     self.minitaur = (minitaur.Minitaur(pybullet_client=self._pybullet_client,
                                        urdf_root=self._urdf_root,
                                        time_step=self._time_step,
@@ -53,11 +61,14 @@ class MinitaurRandomizeTerrainGymEnv(minitaur_gym_env.MinitaurGymEnv):
                                        motor_velocity_limit=self._motor_velocity_limit,
                                        pd_control_enabled=self._pd_control_enabled,
                                        on_rack=self._on_rack))
+
     self._last_base_position = [0, 0, 0]
-    for _ in xrange(100):
+
+    for _ in range(100):
       if self._pd_control_enabled:
         self.minitaur.ApplyAction([math.pi / 2] * 8)
       self._pybullet_client.stepSimulation()
+
     return self._get_observation()
 
   def load_random_terrain(self, terrain_dir):

@@ -16,10 +16,10 @@ import numpy as np
 import pybullet
 import pybullet_utils.bullet_client as bc
 
-from pybullet_envs.prediction import boxstack_pybullet_sim
+from pybullet_envs_local.prediction import boxstack_pybullet_sim
 
 import os
-import pybullet_data
+import pybullet_data_local
 
 from pkg_resources import parse_version
 
@@ -42,7 +42,7 @@ class PyBulletSimGymEnv(gym.Env):
                action_repeat=1,
                time_step=1. / 240.,
                num_bullet_solver_iterations=50,
-               urdf_root=pybullet_data.getDataPath()):
+               urdf_root=pybullet_data_local.getDataPath()):
     """Initialize the gym environment.
 
     Args:

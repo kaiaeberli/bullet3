@@ -31,7 +31,7 @@ _EXPLORE = 3
 def ExploreWorker(rank, num_processes, childPipe, args):
   print("hi:",rank, " out of ", num_processes)  
   import pybullet as op1
-  import pybullet_data as pd
+  import pybullet_data_local as pd
   logName=""
   p1=0
   n = 0

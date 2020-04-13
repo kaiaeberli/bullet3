@@ -9,11 +9,11 @@ os.sys.path.insert(0, parentdir)
 
 import math
 import numpy as np
-from pybullet_envs.prediction import pybullet_sim_gym_env
+from pybullet_envs_local.prediction import pybullet_sim_gym_env
 import argparse
 import time
 
-from pybullet_envs.prediction import boxstack_pybullet_sim
+from pybullet_envs_local.prediction import boxstack_pybullet_sim
 from gym.wrappers.monitoring import video_recorder
 
 

@@ -10,10 +10,10 @@ os.sys.path.insert(0, parentdir)
 
 import os
 import numpy as np
-import tf.compat.v1 as tf
-from pybullet_envs.minitaur.envs import minitaur_alternating_legs_env
-from pybullet_envs.minitaur.envs import minitaur_gym_env
-from pybullet_envs.minitaur.envs.env_randomizers import minitaur_alternating_legs_env_randomizer as randomizer_lib
+import tensorflow.compat.v1 as tf
+from pybullet_envs_local.minitaur.envs import minitaur_alternating_legs_env
+from pybullet_envs_local.minitaur.envs import minitaur_gym_env
+from pybullet_envs_local.minitaur.envs.env_randomizers import minitaur_alternating_legs_env_randomizer as randomizer_lib
 
 #FLAGS = flags.FLAGS
 #flags.DEFINE_string("log_path", None, "The directory to write the log file.")

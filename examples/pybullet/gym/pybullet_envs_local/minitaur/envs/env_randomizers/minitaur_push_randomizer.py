@@ -12,7 +12,7 @@ os.sys.path.insert(0, parentdir)
 
 import math
 import numpy as np
-from pybullet_envs.minitaur.envs import env_randomizer_base
+from pybullet_envs_local.minitaur.envs import env_randomizer_base
 
 _PERTURBATION_START_STEP = 100
 _PERTURBATION_INTERVAL_STEPS = 200

@@ -15,7 +15,7 @@ import math
 import enum
 import numpy as np
 
-from pybullet_envs.minitaur.envs import env_randomizer_base
+from pybullet_envs_local.minitaur.envs import env_randomizer_base
 
 _GRID_LENGTH = 15
 _GRID_WIDTH = 10

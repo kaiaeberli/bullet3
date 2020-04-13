@@ -2,8 +2,8 @@
 
 """
 import numpy as np
-import tf.compat.v1 as tf
-from pybullet_envs.minitaur.envs import minitaur_four_leg_stand_env
+import tensorflow.compat.v1 as tf
+from pybullet_envs_local.minitaur.envs import minitaur_four_leg_stand_env
 
 FLAGS = tf.flags.FLAGS
 tf.flags.DEFINE_string("log_path", None, "The directory to write the log file.")

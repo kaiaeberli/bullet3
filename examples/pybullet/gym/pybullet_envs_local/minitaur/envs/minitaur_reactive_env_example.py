@@ -13,14 +13,14 @@ parentdir = os.path.dirname(os.path.dirname(os.path.dirname(currentdir)))
 print("parentdir=", parentdir)
 os.sys.path.insert(0, parentdir)
 
-import tf.compat.v1 as tf
-from pybullet_envs.minitaur.agents.scripts import utility
-import pybullet_data
-from pybullet_envs.minitaur.envs import simple_ppo_agent
+import tensorflow.compat.v1 as tf
+from pybullet_envs_local.minitaur.agents.scripts import utility
+import pybullet_data_local
+from pybullet_envs_local.minitaur.envs import simple_ppo_agent
 
 flags = tf.app.flags
 FLAGS = tf.app.flags.FLAGS
-LOG_DIR = os.path.join(pybullet_data.getDataPath(), "policies/ppo/minitaur_reactive_env")
+LOG_DIR = os.path.join(pybullet_data_local.getDataPath(), "policies/ppo/minitaur_reactive_env")
 CHECKPOINT = "model.ckpt-14000000"
 
 

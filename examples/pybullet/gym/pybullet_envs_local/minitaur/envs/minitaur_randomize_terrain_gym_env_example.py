@@ -8,7 +8,7 @@ import numpy as np
 import tensorflow.compat.v1 as tf
 #from google3.pyglib import app
 #from google3.pyglib import flags
-from pybullet_envs.minitaur.envs import minitaur_randomize_terrain_gym_env
+from pybullet_envs_local.minitaur.envs import minitaur_randomize_terrain_gym_env
 
 #FLAGS = flags.FLAGS
 
@@ -18,14 +18,15 @@ from pybullet_envs.minitaur.envs import minitaur_randomize_terrain_gym_env
 
 def ResetTerrainExample():
   """An example showing resetting random terrain env."""
-  num_reset = 10
-  steps = 100
+  num_reset = 1
+  steps = 100_000
   env = minitaur_randomize_terrain_gym_env.MinitaurRandomizeTerrainGymEnv(
       render=True, leg_model_enabled=False, motor_velocity_limit=np.inf, pd_control_enabled=True)
   action = [math.pi / 2] * 8
-  for _ in xrange(num_reset):
+  for _ in range(num_reset):
     env.reset()
-    for _ in xrange(steps):
+
+    for _ in range(steps):
       _, _, done, _ = env.step(action)
       if done:
         break
@@ -36,12 +37,12 @@ def SinePolicyExample():
   env = minitaur_randomize_terrain_gym_env.MinitaurRandomizeTerrainGymEnv(
       render=True, motor_velocity_limit=np.inf, pd_control_enabled=True, on_rack=False)
   sum_reward = 0
-  steps = 200
+  steps = 200000
   amplitude_1_bound = 0.5
   amplitude_2_bound = 0.5
-  speed = 40
+  speed = 20
 
-  for step_counter in xrange(steps):
+  for step_counter in range(steps):
     time_step = 0.01
     t = step_counter * time_step
 
@@ -65,13 +66,16 @@ def SinePolicyExample():
     sum_reward += reward
 
 
-def main(unused_argv):
-  if FLAGS.example_name == "sine":
+def main(example_name):
+  #if FLAGS.example_name == "sine":
+  if example_name == "sine":
     SinePolicyExample()
-  elif FLAGS.example_name == "reset":
+  #elif FLAGS.example_name == "reset":
+  elif example_name == "reset":
     ResetTerrainExample()
 
 
 if __name__ == "__main__":
   tf.logging.set_verbosity(tf.logging.INFO)
-  app.run()
+  #app.run()
+  main("sine")

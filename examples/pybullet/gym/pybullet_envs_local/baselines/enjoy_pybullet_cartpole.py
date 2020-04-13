@@ -8,7 +8,7 @@ import gym
 import time
 
 from baselines import deepq
-from pybullet_envs.bullet.cartpole_bullet import CartPoleBulletEnv
+from pybullet_envs_local.bullet.cartpole_bullet import CartPoleBulletEnv
 
 
 def main():

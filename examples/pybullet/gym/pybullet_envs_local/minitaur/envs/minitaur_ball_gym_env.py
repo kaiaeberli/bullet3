@@ -11,8 +11,8 @@ os.sys.path.insert(0, parentdir)
 
 from gym import spaces
 import numpy as np
-from pybullet_envs.minitaur.envs import minitaur_gym_env
-import pybullet_data
+from pybullet_envs_local.minitaur.envs import minitaur_gym_env
+import pybullet_data_local
 
 GOAL_DISTANCE_THRESHOLD = 0.8
 GOAL_REWARD = 1000.0
@@ -33,7 +33,7 @@ class MinitaurBallGymEnv(minitaur_gym_env.MinitaurGymEnv):
   """
 
   def __init__(self,
-               urdf_root=pybullet_data.getDataPath(),
+               urdf_root=pybullet_data_local.getDataPath(),
                self_collision_enabled=True,
                pd_control_enabled=False,
                leg_model_enabled=True,

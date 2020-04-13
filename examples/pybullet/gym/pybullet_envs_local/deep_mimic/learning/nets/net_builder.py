@@ -1,4 +1,4 @@
-import pybullet_envs.deep_mimic.learning.nets.fc_2layers_1024units as fc_2layers_1024units
+import pybullet_envs_local.deep_mimic.learning.nets.fc_2layers_1024units as fc_2layers_1024units
 
 
 def build_net(net_name, input_tfs, reuse=False):

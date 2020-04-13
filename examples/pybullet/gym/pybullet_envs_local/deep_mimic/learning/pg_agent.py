@@ -6,17 +6,17 @@ except Exception:
 
 import copy
 
-from pybullet_envs.deep_mimic.learning.tf_agent import TFAgent
-from pybullet_envs.deep_mimic.learning.solvers.mpi_solver import MPISolver
-import pybullet_envs.deep_mimic.learning.tf_util as TFUtil
-import pybullet_envs.deep_mimic.learning.nets.net_builder as NetBuilder
-from pybullet_envs.deep_mimic.learning.tf_normalizer import TFNormalizer
-import pybullet_envs.deep_mimic.learning.rl_util as RLUtil
+from pybullet_envs_local.deep_mimic.learning.tf_agent import TFAgent
+from pybullet_envs_local.deep_mimic.learning.solvers.mpi_solver import MPISolver
+import pybullet_envs_local.deep_mimic.learning.tf_util as TFUtil
+import pybullet_envs_local.deep_mimic.learning.nets.net_builder as NetBuilder
+from pybullet_envs_local.deep_mimic.learning.tf_normalizer import TFNormalizer
+import pybullet_envs_local.deep_mimic.learning.rl_util as RLUtil
 from pybullet_utils.logger import Logger
 import pybullet_utils.mpi_util as MPIUtil
 import pybullet_utils.math_util as MathUtil
-from pybullet_envs.deep_mimic.env.action_space import ActionSpace
-from pybullet_envs.deep_mimic.env.env import Env
+from pybullet_envs_local.deep_mimic.env.action_space import ActionSpace
+from pybullet_envs_local.deep_mimic.env.env import Env
 '''
 Policy Gradient Agent
 '''

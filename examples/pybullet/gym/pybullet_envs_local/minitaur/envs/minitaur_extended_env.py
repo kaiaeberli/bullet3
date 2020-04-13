@@ -8,7 +8,7 @@ the experimental branch.
 from gym import spaces
 import numpy as np
 
-from pybullet_envs.minitaur.envs.minitaur_reactive_env import MinitaurReactiveEnv
+from pybullet_envs_local.minitaur.envs.minitaur_reactive_env import MinitaurReactiveEnv
 
 
 class MinitaurExtendedEnv(MinitaurReactiveEnv):

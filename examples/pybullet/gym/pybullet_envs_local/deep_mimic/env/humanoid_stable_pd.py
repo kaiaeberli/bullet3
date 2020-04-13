@@ -1,5 +1,5 @@
 from pybullet_utils import pd_controller_stable
-from pybullet_envs.deep_mimic.env import humanoid_pose_interpolator
+from pybullet_envs_local.deep_mimic.env import humanoid_pose_interpolator
 import math
 
 chest = 1

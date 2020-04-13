@@ -23,9 +23,9 @@ from __future__ import print_function
 import os
 import time
 
-import tf.compat.v1 as tf
-from pybullet_envs.agents import utility
-from pybullet_envs.minitaur.agents import simple_ppo_agent
+import tensorflow.compat.v1 as tf
+from pybullet_envs_local.agents import utility
+from pybullet_envs_local.minitaur.agents import simple_ppo_agent
 
 flags = tf.app.flags
 FLAGS = tf.app.flags.FLAGS

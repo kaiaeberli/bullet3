@@ -18,8 +18,8 @@ from google.protobuf import descriptor_pb2
 
 _sym_db = _symbol_database.Default()
 
-from pybullet_envs.minitaur.envs import timestamp_pb2 as timestamp__pb2
-from pybullet_envs.minitaur.envs import vector_pb2 as vector__pb2
+from pybullet_envs_local.minitaur.envs import timestamp_pb2 as timestamp__pb2
+from pybullet_envs_local.minitaur.envs import vector_pb2 as vector__pb2
 
 DESCRIPTOR = _descriptor.FileDescriptor(
     name='minitaur_logging.proto',

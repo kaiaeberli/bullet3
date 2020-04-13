@@ -5,12 +5,12 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(os.path.dirname(currentdir))
 os.sys.path.insert(0, parentdir)
 
-import pybullet_data
+import pybullet_data_local
 import pybullet as p
 import time
 
 p.connect(p.GUI_SERVER)
-p.setAdditionalSearchPath(pybullet_data.getDataPath())
+p.setAdditionalSearchPath(pybullet_data_local.getDataPath())
 
 while (1):
   #this is a no-op command, to allow GUI updates on Mac OSX (main thread)

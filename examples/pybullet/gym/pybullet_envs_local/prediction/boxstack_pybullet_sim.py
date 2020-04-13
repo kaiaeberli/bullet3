@@ -5,7 +5,7 @@ import copy
 import math
 import numpy as np
 import os
-import pybullet_data
+import pybullet_data_local
 import random
 
 
@@ -14,7 +14,7 @@ class BoxStackPyBulletSim(object):
 
   """
 
-  def __init__(self, pybullet_client, urdf_root=pybullet_data.getDataPath(), time_step=0.01):
+  def __init__(self, pybullet_client, urdf_root=pybullet_data_local.getDataPath(), time_step=0.01):
     """Constructs an example simulation and reset it to the initial states.
 
     Args:

@@ -1,4 +1,4 @@
-import pybullet_data
+import pybullet_data_local
 from pybullet_utils.arg_parser import ArgParser
 from pybullet_utils.logger import Logger
 import sys
@@ -10,7 +10,7 @@ def build_arg_parser(args):
 
   arg_file = arg_parser.parse_string('arg_file', '')
   if (arg_file != ''):
-    path = pybullet_data.getDataPath() + "/args/" + arg_file
+    path = pybullet_data_local.getDataPath() + "/args/" + arg_file
     succ = arg_parser.load_file(path)
     Logger.print2(arg_file)
     assert succ, Logger.print2('Failed to	load args	from:	' + arg_file)

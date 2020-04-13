@@ -20,7 +20,7 @@ import os
 import time
 
 import tensorflow.compat.v1 as tf
-from pybullet_envs.minitaur.envs import minitaur_logging_pb2
+from pybullet_envs_local.minitaur.envs import minitaur_logging_pb2
 
 NUM_MOTORS = 8
 

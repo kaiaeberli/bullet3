@@ -1,13 +1,13 @@
 import pybullet as p
 import time
 
-import pybullet_data
+import pybullet_data_local
 
 #cid = p.connect(p.UDP,"192.168.86.100")
 cid = p.connect(p.SHARED_MEMORY)
 if (cid < 0):
   p.connect(p.GUI)
-p.setAdditionalSearchPath(pybullet_data.getDataPath())
+p.setAdditionalSearchPath(pybullet_data_local.getDataPath())
 p.resetSimulation()
 
 objects = [

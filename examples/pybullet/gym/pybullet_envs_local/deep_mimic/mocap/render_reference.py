@@ -5,7 +5,7 @@ os.sys.path.insert(0, parentdir)
 
 print('parent:', parentdir)
 
-import pybullet_data
+import pybullet_data_local
 import pybullet
 import time
 import random
@@ -13,7 +13,7 @@ import random
 from pybullet_utils.bullet_client import BulletClient
 from deep_mimic.env.motion_capture_data import MotionCaptureData
 
-# from pybullet_envs.deep_mimic.env.humanoid_stable_pd import HumanoidStablePd
+# from pybullet_envs_local.deep_mimic.env.humanoid_stable_pd import HumanoidStablePd
 from humanoid import Humanoid
 from humanoid import HumanoidPose
 
@@ -86,7 +86,7 @@ rot_seq = coord_seq_to_rot_seq(coord_seq=ground_truth, frame_duration=1 / fps)
 rot_seq_to_deepmimic_json(rot_seq=rot_seq, loop=loop, json_path=json_path)
 
 bc = BulletClient(connection_mode=pybullet.GUI)
-bc.setAdditionalSearchPath(pybullet_data.getDataPath())
+bc.setAdditionalSearchPath(pybullet_data_local.getDataPath())
 bc.configureDebugVisualizer(bc.COV_ENABLE_Y_AXIS_UP, 1)
 bc.setGravity(0, -9.8, 0)
 motion = MotionCaptureData()

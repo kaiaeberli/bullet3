@@ -16,7 +16,7 @@ import numpy as np
 import time
 import subprocess
 import pybullet as p2
-import pybullet_data
+import pybullet_data_local
 import pybullet_utils.bullet_client as bc
 from pkg_resources import parse_version
 
@@ -97,7 +97,7 @@ class CartPoleBulletEnv(gym.Env):
  
       p = self._p
       p.resetSimulation()
-      self.cartpole = p.loadURDF(os.path.join(pybullet_data.getDataPath(), "cartpole.urdf"),
+      self.cartpole = p.loadURDF(os.path.join(pybullet_data_local.getDataPath(), "cartpole.urdf"),
                                  [0, 0, 0])
       p.changeDynamics(self.cartpole, -1, linearDamping=0, angularDamping=0)
       p.changeDynamics(self.cartpole, 0, linearDamping=0, angularDamping=0)

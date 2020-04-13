@@ -5,7 +5,7 @@ parentdir = os.path.dirname(os.path.dirname(currentdir))
 os.sys.path.insert(0, parentdir)
 
 from pybullet_utils import bullet_client
-from pybullet_envs.examples import panda_sim
+from pybullet_envs_local.examples import panda_sim
 
 
 import time
@@ -31,7 +31,7 @@ _EXPLORE = 3
 def ExploreWorker(rank, num_processes, childPipe, args):
   print("hi:",rank, " out of ", num_processes)  
   import pybullet as op1
-  import pybullet_data as pd
+  import pybullet_data_local as pd
   logName=""
   p1=0
   n = 0

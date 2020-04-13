@@ -27,11 +27,11 @@ import functools
 import os
 
 import gym
-import tf.compat.v1 as tf
+import tensorflow.compat.v1 as tf
 
-from pybullet_envs.minitaur.agents import tools
-from pybullet_envs.minitaur.agents.scripts import configs
-from pybullet_envs.minitaur.agents.scripts import utility
+from pybullet_envs_local.minitaur.agents import tools
+from pybullet_envs_local.minitaur.agents.scripts import configs
+from pybullet_envs_local.minitaur.agents.scripts import utility
 
 
 def _create_environment(config):

@@ -7,12 +7,12 @@ import pybullet as p
 import numpy as np
 import copy
 import math
-import pybullet_data
+import pybullet_data_local
 
 
 class Kuka:
 
-  def __init__(self, urdfRootPath=pybullet_data.getDataPath(), timeStep=0.01):
+  def __init__(self, urdfRootPath=pybullet_data_local.getDataPath(), timeStep=0.01):
     self.urdfRootPath = urdfRootPath
     self.timeStep = timeStep
     self.maxVelocity = .35

@@ -12,7 +12,7 @@ parentdir = os.path.dirname(os.path.dirname(currentdir))
 os.sys.path.insert(0, parentdir)
 
 import numpy as np
-from pybullet_envs.minitaur.envs import minitaur
+from pybullet_envs_local.minitaur.envs import minitaur
 
 KNEE_CONSTRAINT_POINT_LONG = [0, 0.0055, 0.088]
 KNEE_CONSTRAINT_POINT_SHORT = [0, 0.0055, 0.100]

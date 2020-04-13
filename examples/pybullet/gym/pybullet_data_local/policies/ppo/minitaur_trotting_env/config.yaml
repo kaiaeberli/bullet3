@@ -1,10 +1,10 @@
-!!python/object/new:pybullet_envs.minitaur.agents.tools.attr_dict.AttrDict
+!!python/object/new:pybullet_envs_local.minitaur.agents.tools.attr_dict.AttrDict
 dictitems:
-  algorithm: !!python/name:pybullet_envs.minitaur.agents.ppo.algorithm.PPOAlgorithm ''
+  algorithm: !!python/name:pybullet_envs_local.minitaur.agents.ppo.algorithm.PPOAlgorithm ''
   discount: 0.9899764168788918
   env: !!python/object/apply:functools.partial
     args:
-    - &id001 !!python/name:pybullet_envs.minitaur.envs.minitaur_trotting_env.MinitaurTrottingEnv ''
+    - &id001 !!python/name:pybullet_envs_local.minitaur.envs.minitaur_trotting_env.MinitaurTrottingEnv ''
     state: !!python/tuple
     - *id001
     - !!python/tuple []
@@ -25,7 +25,7 @@ dictitems:
   kl_target: 0.01
   logdir: /cns/ij-d/home/jietan/experiment/minitaur_vizier_study_ppo/mintrot_nonexp_nr_01_186515603_186518344/373
   max_length: 1000
-  network: !!python/name:pybullet_envs.minitaur.agents.scripts.networks.ForwardGaussianPolicy ''
+  network: !!python/name:pybullet_envs_local.minitaur.agents.scripts.networks.ForwardGaussianPolicy ''
   network_config: {}
   num_agents: 25
   policy_layers: !!python/tuple

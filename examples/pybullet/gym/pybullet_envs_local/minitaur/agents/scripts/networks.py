@@ -17,10 +17,12 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import tf.compat.v1 as tf
+#import tensorflow.compat.v1 as tf
+import tensorflow as tf  # had to do this bec tf.contrib is missing in tf compat as dropped from tf2
 
 _MEAN_WEIGHTS_INITIALIZER = tf.contrib.layers.variance_scaling_initializer(factor=0.1)
 _LOGSTD_INITIALIZER = tf.random_normal_initializer(-1, 1e-10)
+
 
 
 class LinearGaussianPolicy(tf.contrib.rnn.RNNCell):

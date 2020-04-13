@@ -13,7 +13,7 @@ import pybullet
 from . import racecar
 import random
 import pybullet_utils.bullet_client as bc
-import pybullet_data
+import pybullet_data_local
 from pkg_resources import parse_version
 
 RENDER_HEIGHT = 720
@@ -24,7 +24,7 @@ class RacecarGymEnv(gym.Env):
   metadata = {'render.modes': ['human', 'rgb_array'], 'video.frames_per_second': 50}
 
   def __init__(self,
-               urdfRoot=pybullet_data.getDataPath(),
+               urdfRoot=pybullet_data_local.getDataPath(),
                actionRepeat=50,
                isEnableSelfCollision=True,
                isDiscrete=False,

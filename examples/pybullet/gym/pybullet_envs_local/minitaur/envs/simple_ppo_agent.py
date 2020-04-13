@@ -4,9 +4,9 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import tf.compat.v1 as tf
-from pybullet_envs.agents.ppo import normalize
-from pybullet_envs.agents import utility
+import tensorflow.compat.v1 as tf
+from pybullet_envs_local.agents.ppo import normalize
+from pybullet_envs_local.agents import utility
 
 
 class SimplePPOPolicy(object):

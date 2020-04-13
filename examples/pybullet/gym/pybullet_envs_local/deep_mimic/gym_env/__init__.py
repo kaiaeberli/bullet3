@@ -1,3 +1,3 @@
-from pybullet_envs.deep_mimic.gym_env.deep_mimic_env import HumanoidDeepMimicBackflipBulletEnv
-from pybullet_envs.deep_mimic.gym_env.deep_mimic_env import HumanoidDeepMimicWalkBulletEnv
+from pybullet_envs_local.deep_mimic.gym_env.deep_mimic_env import HumanoidDeepMimicBackflipBulletEnv
+from pybullet_envs_local.deep_mimic.gym_env.deep_mimic_env import HumanoidDeepMimicWalkBulletEnv
 

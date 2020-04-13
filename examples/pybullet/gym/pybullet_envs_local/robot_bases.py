@@ -5,7 +5,7 @@ import os, inspect
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 os.sys.path.insert(0, parentdir)
-import pybullet_data
+import pybullet_data_local
 
 
 class XmlBasedRobot:
@@ -127,7 +127,7 @@ class MJCFBasedRobot(XmlBasedRobot):
       self.ordered_joints = []
       self.doneLoading = 1
       if self.self_collision:
-        self.objects = self._p.loadMJCF(os.path.join(pybullet_data.getDataPath(), "mjcf",
+        self.objects = self._p.loadMJCF(os.path.join(pybullet_data_local.getDataPath(), "mjcf",
                                                      self.model_xml),
                                         flags=pybullet.URDF_USE_SELF_COLLISION |
                                         pybullet.URDF_USE_SELF_COLLISION_EXCLUDE_ALL_PARENTS)
@@ -135,7 +135,7 @@ class MJCFBasedRobot(XmlBasedRobot):
             self._p, self.objects)
       else:
         self.objects = self._p.loadMJCF(
-            os.path.join(pybullet_data.getDataPath(), "mjcf", self.model_xml))
+            os.path.join(pybullet_data_local.getDataPath(), "mjcf", self.model_xml))
         self.parts, self.jdict, self.ordered_joints, self.robot_body = self.addToScene(
             self._p, self.objects)
     self.robot_specific_reset(self._p)
@@ -179,7 +179,7 @@ class URDFBasedRobot(XmlBasedRobot):
     if self.self_collision:
       self.parts, self.jdict, self.ordered_joints, self.robot_body = self.addToScene(
           self._p,
-          self._p.loadURDF(os.path.join(pybullet_data.getDataPath(), self.model_urdf),
+          self._p.loadURDF(os.path.join(pybullet_data_local.getDataPath(), self.model_urdf),
                            basePosition=self.basePosition,
                            baseOrientation=self.baseOrientation,
                            useFixedBase=self.fixed_base,
@@ -187,7 +187,7 @@ class URDFBasedRobot(XmlBasedRobot):
     else:
       self.parts, self.jdict, self.ordered_joints, self.robot_body = self.addToScene(
           self._p,
-          self._p.loadURDF(os.path.join(pybullet_data.getDataPath(), self.model_urdf),
+          self._p.loadURDF(os.path.join(pybullet_data_local.getDataPath(), self.model_urdf),
                            basePosition=self.basePosition,
                            baseOrientation=self.baseOrientation,
                            useFixedBase=self.fixed_base))

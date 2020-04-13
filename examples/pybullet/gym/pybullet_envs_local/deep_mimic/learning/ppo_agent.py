@@ -5,14 +5,14 @@ try:
 except Exception:
   import tensorflow as tf
 
-from pybullet_envs.deep_mimic.learning.pg_agent import PGAgent
-from pybullet_envs.deep_mimic.learning.solvers.mpi_solver import MPISolver
-import pybullet_envs.deep_mimic.learning.tf_util as TFUtil
-import pybullet_envs.deep_mimic.learning.rl_util as RLUtil
+from pybullet_envs_local.deep_mimic.learning.pg_agent import PGAgent
+from pybullet_envs_local.deep_mimic.learning.solvers.mpi_solver import MPISolver
+import pybullet_envs_local.deep_mimic.learning.tf_util as TFUtil
+import pybullet_envs_local.deep_mimic.learning.rl_util as RLUtil
 from pybullet_utils.logger import Logger
 import pybullet_utils.mpi_util as MPIUtil
 import pybullet_utils.math_util as MathUtil
-from pybullet_envs.deep_mimic.env.env import Env
+from pybullet_envs_local.deep_mimic.env.env import Env
 '''
 Proximal Policy Optimization Agent
 '''

@@ -20,9 +20,9 @@ from __future__ import print_function
 import collections
 import os
 
-import tf.compat.v1 as tf
+import tensorflow.compat.v1 as tf
 
-from pybullet_envs.minitaur.agents.tools import streaming_mean
+from pybullet_envs_local.minitaur.agents.tools import streaming_mean
 
 _Phase = collections.namedtuple(
     'Phase', 'name, writer, op, batch, steps, feed, report_every, log_every,'

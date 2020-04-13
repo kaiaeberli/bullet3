@@ -4,7 +4,7 @@ try:
   import tensorflow.compat.v1 as tf
 except Exception:
   import tensorflow as tf
-from pybullet_envs.deep_mimic.learning.normalizer import Normalizer
+from pybullet_envs_local.deep_mimic.learning.normalizer import Normalizer
 
 
 class TFNormalizer(Normalizer):

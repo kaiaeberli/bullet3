@@ -6,9 +6,9 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import tf.compat.v1 as tf
-from pybullet_envs.minitaur.envs import minitaur_raibert_controller
-from pybullet_envs.minitaur.envs import minitaur_gym_env
+import tensorflow.compat.v1 as tf
+from pybullet_envs_local.minitaur.envs import minitaur_raibert_controller
+from pybullet_envs_local.minitaur.envs import minitaur_gym_env
 
 flags = tf.app.flags
 FLAGS = tf.app.flags.FLAGS

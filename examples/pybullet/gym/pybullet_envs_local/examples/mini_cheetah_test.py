@@ -1,5 +1,5 @@
 import pybullet as p
-import pybullet_data as pd
+import pybullet_data_local as pd
 import time
 
 p.connect(p.GUI)

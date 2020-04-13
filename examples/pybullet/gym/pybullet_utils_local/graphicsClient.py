@@ -2,7 +2,7 @@ import pybullet as p
 import time
 
 p.connect(p.GRAPHICS_SERVER_TCP)
-import pybullet_data as pd
+import pybullet_data_local as pd
 p.setAdditionalSearchPath(pd.getDataPath())
 
 p.loadURDF("plane.urdf")

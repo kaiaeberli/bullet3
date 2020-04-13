@@ -5,9 +5,9 @@
 import math
 
 import numpy as np
-import tf.compat.v1 as tf
+import tensorflow.compat.v1 as tf
 
-from pybullet_envs.minitaur.envs import minitaur_stand_gym_env
+from pybullet_envs_local.minitaur.envs import minitaur_stand_gym_env
 
 
 def StandUpExample():

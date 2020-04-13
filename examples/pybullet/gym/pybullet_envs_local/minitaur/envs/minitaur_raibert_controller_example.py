@@ -10,9 +10,9 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(os.path.dirname(os.path.dirname(currentdir)))
 os.sys.path.insert(0, parentdir)
 
-import tf.compat.v1 as tf
-from pybullet_envs.minitaur.envs import minitaur_raibert_controller
-from pybullet_envs.minitaur.envs import minitaur_gym_env
+import tensorflow.compat.v1 as tf
+from pybullet_envs_local.minitaur.envs import minitaur_raibert_controller
+from pybullet_envs_local.minitaur.envs import minitaur_gym_env
 
 flags = tf.app.flags
 FLAGS = tf.app.flags.FLAGS

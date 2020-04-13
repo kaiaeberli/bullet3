@@ -1,9 +1,9 @@
 import pybullet as p
-import pybullet_data as pd
+import pybullet_data_local as pd
 import math
 import time
 import numpy as np
-from pybullet_envs.examples import panda_sim
+from pybullet_envs_local.examples import panda_sim
 
 p.connect(p.GUI)
 p.configureDebugVisualizer(p.COV_ENABLE_Y_AXIS_UP,1)

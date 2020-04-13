@@ -1,4 +1,4 @@
-import pybullet_data as pd
+import pybullet_data_local as pd
 import pybullet_utils as pu
 import pybullet
 import pybullet_utils.bullet_client as bc

@@ -4,7 +4,7 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(os.path.dirname(currentdir))
 os.sys.path.insert(0, parentdir)
 
-from pybullet_envs.bullet.racecarGymEnv import RacecarGymEnv
+from pybullet_envs_local.bullet.racecarGymEnv import RacecarGymEnv
 isDiscrete = False
 
 

@@ -9,9 +9,9 @@ os.sys.path.insert(0, parentdir)
 
 import math
 import numpy as np
-from pybullet_envs.bullet import minitaur_gym_env
+from pybullet_envs_local.bullet import minitaur_gym_env
 import argparse
-from pybullet_envs.bullet import minitaur_env_randomizer
+from pybullet_envs_local.bullet import minitaur_env_randomizer
 
 
 def ResetPoseExample():

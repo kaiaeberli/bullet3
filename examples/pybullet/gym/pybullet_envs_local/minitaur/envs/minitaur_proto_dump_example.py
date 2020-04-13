@@ -1,7 +1,7 @@
 import argparse
 import numpy
 
-from pybullet_envs.minitaur.envs import minitaur_logging
+from pybullet_envs_local.minitaur.envs import minitaur_logging
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--log_file', help='path to protobuf file', default='')

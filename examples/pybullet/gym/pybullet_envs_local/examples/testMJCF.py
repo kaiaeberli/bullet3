@@ -5,13 +5,13 @@ parentdir = os.path.dirname(os.path.dirname(currentdir))
 os.sys.path.insert(0, parentdir)
 
 import pybullet as p
-import pybullet_data
+import pybullet_data_local
 import time
 
 
 def test(args):
   p.connect(p.GUI)
-  p.setAdditionalSearchPath(pybullet_data.getDataPath())
+  p.setAdditionalSearchPath(pybullet_data_local.getDataPath())
   fileName = os.path.join("mjcf", args.mjcf)
   print("fileName")
   print(fileName)

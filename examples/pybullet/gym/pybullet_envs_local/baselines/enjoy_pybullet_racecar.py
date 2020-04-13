@@ -5,7 +5,7 @@ parentdir = os.path.dirname(os.path.dirname(currentdir))
 os.sys.path.insert(0, parentdir)
 
 import gym
-from pybullet_envs.bullet.racecarGymEnv import RacecarGymEnv
+from pybullet_envs_local.bullet.racecarGymEnv import RacecarGymEnv
 
 from baselines import deepq
 

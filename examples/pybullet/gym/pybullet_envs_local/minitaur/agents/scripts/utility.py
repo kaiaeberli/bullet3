@@ -22,9 +22,9 @@ import os
 import re
 
 import ruamel.yaml as yaml
-import tf.compat.v1 as tf
+import tensorflow.compat.v1 as tf
 
-from pybullet_envs.minitaur.agents import tools
+from pybullet_envs_local.minitaur.agents import tools
 
 
 def define_simulation_graph(batch_env, algo_cls, config):

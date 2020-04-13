@@ -2,7 +2,7 @@ from robot_bases import XmlBasedRobot, MJCFBasedRobot, URDFBasedRobot
 import numpy as np
 import pybullet
 import os
-import pybullet_data
+import pybullet_data_local
 from robot_bases import BodyPart
 
 
@@ -208,7 +208,7 @@ class Humanoid(WalkerBase):
 
 
 def get_cube(_p, x, y, z):
-  body = _p.loadURDF(os.path.join(pybullet_data.getDataPath(), "cube_small.urdf"), [x, y, z])
+  body = _p.loadURDF(os.path.join(pybullet_data_local.getDataPath(), "cube_small.urdf"), [x, y, z])
   _p.changeDynamics(body, -1, mass=1.2)  #match Roboschool
   part_name, _ = _p.getBodyInfo(body)
   part_name = part_name.decode("utf8")
@@ -217,7 +217,7 @@ def get_cube(_p, x, y, z):
 
 
 def get_sphere(_p, x, y, z):
-  body = _p.loadURDF(os.path.join(pybullet_data.getDataPath(), "sphere2red_nocol.urdf"), [x, y, z])
+  body = _p.loadURDF(os.path.join(pybullet_data_local.getDataPath(), "sphere2red_nocol.urdf"), [x, y, z])
   part_name, _ = _p.getBodyInfo(body)
   part_name = part_name.decode("utf8")
   bodies = [body]

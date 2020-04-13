@@ -2,9 +2,9 @@ import os, inspect
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 os.sys.path.insert(0, parentdir)
-import pybullet_data
+import pybullet_data_local
 
-from pybullet_envs.scene_abstract import Scene
+from pybullet_envs_local.scene_abstract import Scene
 import pybullet
 
 
@@ -24,9 +24,9 @@ class StadiumScene(Scene):
       # if self.zero_at_running_strip_start_line:
       #	 stadium_pose.set_xyz(27, 21, 0)  # see RUN_STARTLINE, RUN_RAD constants
 
-      filename = os.path.join(pybullet_data.getDataPath(), "plane_stadium.sdf")
+      filename = os.path.join(pybullet_data_local.getDataPath(), "plane_stadium.sdf")
       self.ground_plane_mjcf = self._p.loadSDF(filename)
-      #filename = os.path.join(pybullet_data.getDataPath(),"stadium_no_collision.sdf")
+      #filename = os.path.join(pybullet_data_local.getDataPath(),"stadium_no_collision.sdf")
       #self.ground_plane_mjcf = self._p.loadSDF(filename)
       #
       for i in self.ground_plane_mjcf:

@@ -19,8 +19,8 @@ from __future__ import print_function
 
 # pylint: disable=unused-variable
 
-from pybullet_envs.minitaur.agents import ppo
-from pybullet_envs.minitaur.agents.scripts import networks
+from pybullet_envs_local.minitaur.agents import ppo
+from pybullet_envs_local.minitaur.agents.scripts import networks
 
 
 def default():

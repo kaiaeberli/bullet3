@@ -12,10 +12,10 @@ else:
 
 from enum import Enum
 
-from pybullet_envs.deep_mimic.learning.path import *
-from pybullet_envs.deep_mimic.learning.exp_params import ExpParams
-from pybullet_envs.deep_mimic.learning.normalizer import Normalizer
-from pybullet_envs.deep_mimic.learning.replay_buffer import ReplayBuffer
+from pybullet_envs_local.deep_mimic.learning.path import *
+from pybullet_envs_local.deep_mimic.learning.exp_params import ExpParams
+from pybullet_envs_local.deep_mimic.learning.normalizer import Normalizer
+from pybullet_envs_local.deep_mimic.learning.replay_buffer import ReplayBuffer
 from pybullet_utils.logger import Logger
 import pybullet_utils.mpi_util as MPIUtil
 import pybullet_utils.math_util as MathUtil

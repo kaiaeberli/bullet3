@@ -15,13 +15,13 @@ from gym.utils import seeding
 import numpy as np
 import pybullet
 import pybullet_utils.bullet_client as bc
-import pybullet_data
-from pybullet_envs.minitaur.envs import minitaur
-from pybullet_envs.minitaur.envs import minitaur_derpy
-from pybullet_envs.minitaur.envs import minitaur_logging
-from pybullet_envs.minitaur.envs import minitaur_logging_pb2
-from pybullet_envs.minitaur.envs import minitaur_rainbow_dash
-from pybullet_envs.minitaur.envs import motor
+import pybullet_data_local
+from pybullet_envs_local.minitaur.envs import minitaur
+from pybullet_envs_local.minitaur.envs import minitaur_derpy
+from pybullet_envs_local.minitaur.envs import minitaur_logging
+from pybullet_envs_local.minitaur.envs import minitaur_logging_pb2
+from pybullet_envs_local.minitaur.envs import minitaur_rainbow_dash
+from pybullet_envs_local.minitaur.envs import motor
 from pkg_resources import parse_version
 
 NUM_MOTORS = 8
@@ -67,7 +67,7 @@ class MinitaurGymEnv(gym.Env):
   metadata = {"render.modes": ["human", "rgb_array"], "video.frames_per_second": 100}
 
   def __init__(self,
-               urdf_root=pybullet_data.getDataPath(),
+               urdf_root=pybullet_data_local.getDataPath(),
                urdf_version=None,
                distance_weight=1.0,
                energy_weight=0.005,

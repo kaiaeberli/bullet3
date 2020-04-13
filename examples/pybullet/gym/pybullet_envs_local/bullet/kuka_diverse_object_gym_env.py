@@ -1,4 +1,4 @@
-from pybullet_envs.bullet.kukaGymEnv import KukaGymEnv
+from pybullet_envs_local.bullet.kukaGymEnv import KukaGymEnv
 import random
 import os
 from gym import spaces
@@ -6,7 +6,7 @@ import time
 import pybullet as p
 from . import kuka
 import numpy as np
-import pybullet_data
+import pybullet_data_local
 import pdb
 import distutils.dir_util
 import glob
@@ -22,7 +22,7 @@ class KukaDiverseObjectEnv(KukaGymEnv):
   """
 
   def __init__(self,
-               urdfRoot=pybullet_data.getDataPath(),
+               urdfRoot=pybullet_data_local.getDataPath(),
                actionRepeat=80,
                isEnableSelfCollision=True,
                renders=False,

@@ -12,7 +12,7 @@ import time
 import pybullet as p
 from . import kuka
 import random
-import pybullet_data
+import pybullet_data_local
 from pkg_resources import parse_version
 
 maxSteps = 1000
@@ -25,7 +25,7 @@ class KukaCamGymEnv(gym.Env):
   metadata = {'render.modes': ['human', 'rgb_array'], 'video.frames_per_second': 50}
 
   def __init__(self,
-               urdfRoot=pybullet_data.getDataPath(),
+               urdfRoot=pybullet_data_local.getDataPath(),
                actionRepeat=1,
                isEnableSelfCollision=True,
                renders=False,

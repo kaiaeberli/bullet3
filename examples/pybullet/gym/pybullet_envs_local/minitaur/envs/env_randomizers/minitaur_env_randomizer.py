@@ -8,7 +8,7 @@ parentdir = os.path.dirname(os.path.dirname(parentdir))
 os.sys.path.insert(0, parentdir)
 
 import numpy as np
-from pybullet_envs.minitaur.envs import env_randomizer_base
+from pybullet_envs_local.minitaur.envs import env_randomizer_base
 
 # Relative range.
 MINITAUR_BASE_MASS_ERROR_RANGE = (-0.2, 0.2)  # 0.2 means 20%

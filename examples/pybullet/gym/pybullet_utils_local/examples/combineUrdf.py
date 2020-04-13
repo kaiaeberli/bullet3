@@ -1,14 +1,14 @@
 import pybullet_utils.bullet_client as bc
 import pybullet_utils.urdfEditor as ed
 import pybullet
-import pybullet_data
+import pybullet_data_local
 import time
 
 p0 = bc.BulletClient(connection_mode=pybullet.DIRECT)
-p0.setAdditionalSearchPath(pybullet_data.getDataPath())
+p0.setAdditionalSearchPath(pybullet_data_local.getDataPath())
 
 p1 = bc.BulletClient(connection_mode=pybullet.DIRECT)
-p1.setAdditionalSearchPath(pybullet_data.getDataPath())
+p1.setAdditionalSearchPath(pybullet_data_local.getDataPath())
 
 #can also connect using different modes, GUI, SHARED_MEMORY, TCP, UDP, SHARED_MEMORY_SERVER, GUI_SERVER
 

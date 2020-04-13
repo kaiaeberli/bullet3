@@ -19,7 +19,7 @@ import numpy as np
 import pybullet
 import pybullet_utils.bullet_client as bc
 from . import minitaur
-import pybullet_data
+import pybullet_data_local
 from . import minitaur_env_randomizer
 
 NUM_SUBSTEPS = 5
@@ -51,7 +51,7 @@ class MinitaurBulletDuckEnv(gym.Env):
 
   def __init__(
       self,
-      urdf_root=pybullet_data.getDataPath(),
+      urdf_root=pybullet_data_local.getDataPath(),
       action_repeat=1,
       distance_weight=1.0,
       energy_weight=0.005,

@@ -1,5 +1,5 @@
 import pybullet as p
-import pybullet_data as pd
+import pybullet_data_local as pd
 import time
 p.connect(p.GUI)#, options="--background_color_red=1.0 --background_color_blue=1.0 --background_color_green=1.0")
 p.setAdditionalSearchPath(pd.getDataPath())
