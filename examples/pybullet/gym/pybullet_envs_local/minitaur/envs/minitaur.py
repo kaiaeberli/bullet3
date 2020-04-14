@@ -658,19 +658,49 @@ class Minitaur(object):
       The eight desired motor angles that can be used in ApplyActions().
     """
     motor_angle = copy.deepcopy(actions)
+
+    # scalars for angles
     scale_for_singularity = 1
-    offset_for_singularity = 1.5
-    half_num_motors = int(self.num_motors / 2)
-    quater_pi = math.pi / 4
+    offset_for_singularity = 1.5 #
+
+
+    half_num_motors = int(self.num_motors / 2) # 4
+    quarter_pi = math.pi / 4 # 45 degree in radians
+
     for i in range(self.num_motors):
       action_idx = int(i // 2)
+
+      # leg swing s
       forward_backward_component = (
-          -scale_for_singularity * quater_pi *
+          -scale_for_singularity * quarter_pi *
           (actions[action_idx + half_num_motors] + offset_for_singularity))
-      extension_component = (-1)**i * quater_pi * actions[action_idx]
+
+      # leg extension e
+      extension_component = (-1)**i * quarter_pi * actions[action_idx]
+
       if i >= half_num_motors:
         extension_component = -extension_component
+
+      # starting position for 2 motors per leg are up and down positions respectively
+      #                 180 degree +
       motor_angle[i] = (math.pi + forward_backward_component + extension_component)
+
+      """
+         motor angle order: 
+
+        'motor_front_leftL_joint', 0
+        'motor_front_leftR_joint', 1
+
+        'motor_back_leftL_joint', 2
+        'motor_back_leftR_joint', 3
+
+        'motor_front_rightL_joint', 4
+        'motor_front_rightR_joint', 5
+
+        'motor_back_rightL_joint', 6
+        'motor_back_rightR_joint', 7
+        """
+
     return motor_angle
 
   def GetBaseMassesFromURDF(self):

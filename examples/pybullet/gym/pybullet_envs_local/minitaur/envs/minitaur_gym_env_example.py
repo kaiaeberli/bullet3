@@ -171,8 +171,11 @@ def SinePolicyExample(log_path=None):
       hard_reset=False,
       on_rack=False,
       log_path=log_path)
+
   sum_reward = 0
-  steps = 20000
+  steps = 20_000
+
+  # amplitude of sine wave, limits max/min to desired leg angles, helps reduce size of observation space
   amplitude_1_bound = 0.5
   amplitude_2_bound = 0.5
   speed = 40
@@ -184,18 +187,33 @@ def SinePolicyExample(log_path=None):
     amplitude1 = amplitude_1_bound
     amplitude2 = amplitude_2_bound
     steering_amplitude = 0
-    if t < 10:
+    if t < 10: # first 10 seconds
+
+      # this cancels/doubles amplitude, leading to smaller/larger leg extension, and is used for steering
       steering_amplitude = 0.5
-    elif t < 20:
+    elif t < 20: # 10 to 20 seconds
       steering_amplitude = -0.5
-    else:
+    else: # afterwards
       steering_amplitude = 0
 
     # Applying asymmetrical sine gaits to different legs can steer the minitaur.
+
+    """ steering takes place in leg space (leg extension angle and forward backward angle)
+        and is converted to motor space (8 individual motor angles)
+    """
+
     a1 = math.sin(t * speed) * (amplitude1 + steering_amplitude)
+
+    # + pi shifts phase of sine function - this move high point of leg out of phase with other legs
     a2 = math.sin(t * speed + math.pi) * (amplitude1 - steering_amplitude)
     a3 = math.sin(t * speed) * amplitude2
+
+    # phase shift
     a4 = math.sin(t * speed + math.pi) * amplitude2
+
+    # a2 and a4 legs are in same phase, a1 and a3 also
+    # steering is done with a1 and a2 legs, which are parallel to each other
+
     action = [a1, a2, a2, a1, a3, a4, a4, a3]
     _, reward, done, _ = environment.step(action)
     time.sleep(1. / 100.)
