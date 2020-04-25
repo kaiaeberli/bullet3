@@ -239,6 +239,14 @@ class Minitaur(object):
   def _BuildMotorIdList(self):
     self._motor_id_list = [self._joint_name_to_id[motor_name] for motor_name in MOTOR_NAMES]
 
+  def GetMotorNamesWithIdsInCommandOrder(self):
+    d_motor_id = {self._joint_name_to_id[s]: s for s in self._joint_name_to_id if ("motor" and "joint") in s}
+    return [[d_motor_id[el], el] for el in self._motor_id_list]
+
+  def GetOrderedMotorNameList(self):
+    return  [[motor_name, self._joint_name_to_id[motor_name]] for motor_name in MOTOR_NAMES]
+
+
   def IsObservationValid(self):
     """Whether the observation is valid for the current time step.
 
@@ -654,6 +662,7 @@ class Minitaur(object):
 
     Args:
       actions: The theta, phi of the leg model.
+      action order: [e, e, e, e, s, s, s, s]
     Returns:
       The eight desired motor angles that can be used in ApplyActions().
     """
@@ -670,35 +679,56 @@ class Minitaur(object):
     for i in range(self.num_motors):
       action_idx = int(i // 2)
 
-      # leg swing s
+      # leg swing s - this only refers to action indices 4-8
+      # independent of left/right motor per leg
       forward_backward_component = (
           -scale_for_singularity * quarter_pi *
           (actions[action_idx + half_num_motors] + offset_for_singularity))
 
-      # leg extension e
+      # leg extension e - this only refers to actions indexes 0-3
+      #                     +-       45 degree   * range(-1 to 1)
+      # this will oscillate leg extension between -45 and 45 degree, or between 45 and -45 degree for each alternating motor
+      # the closer to 0, the longer the leg will be extended
+      # this needs to be offset by 180 degree for some motors
       extension_component = (-1)**i * quarter_pi * actions[action_idx]
 
+      # all motors on right hand side of robot get a negative extension angle
       if i >= half_num_motors:
         extension_component = -extension_component
 
       # starting position for 2 motors per leg are up and down positions respectively
-      #                 180 degree +
+      # front_left_l_joint                180 degree +      x    +  (+)  45 * (-1 to 1) action 0 = 135 to 225
+      # front_left_r_joint                180 degree +      x    +  (-)  45 * (-1 to 1) action 0 = 225 to 135
+      # back_left_l_joint                 180 degree +      x    +  (+)  45 * (-1 to 1) action 1 = 135 to 225
+      # back_left_r_joint                 180 degree +      x    +  (-)  45 * (-1 to 1) action 1 = 225 to 135
+
+      # front_right_l_joint                180 degree +      x    -  (+)  45 * (-1 to 1) action 2 = 225 to 135
+      # front_right_r_joint                180 degree +      x    -  (-)  45 * (-1 to 1) action 2 = 135 to 225
+      # back_right_l_joint                 180 degree +      x    -  (+)  45 * (-1 to 1) action 3 = 225 to 135
+      # back_right_r_joint                 180 degree +      x    -  (-)  45 * (-1 to 1) action 3 = 135 to 225
+
+
       motor_angle[i] = (math.pi + forward_backward_component + extension_component)
 
       """
-         motor angle order: 
+         motor order in motor_angle array
 
         'motor_front_leftL_joint', 0
         'motor_front_leftR_joint', 1
+        goes to action index 0
 
         'motor_back_leftL_joint', 2
         'motor_back_leftR_joint', 3
+        goes to action index 1
 
         'motor_front_rightL_joint', 4
         'motor_front_rightR_joint', 5
+        goes to action index 2
 
         'motor_back_rightL_joint', 6
         'motor_back_rightR_joint', 7
+        goes to action index 3
+        
         """
 
     return motor_angle
@@ -856,6 +886,17 @@ class Minitaur(object):
   def SetMotorViscousDamping(self, viscous_damping):
     if self._accurate_motor_model_enabled:
       self._motor_model.set_viscous_damping(viscous_damping)
+
+
+  def GetObservationDescription(self):
+    desc = []
+    motor_names = np.array(self.GetOrderedMotorNameList())[:,0]
+    desc.extend(["angle_" + name for name in motor_names])
+    desc.extend(["vel_" + name for name in motor_names])
+    desc.extend(["torque_" + name for name in motor_names])
+    desc.extend(["x_orn", "y_orn", "z_orn", "theta_orn"])
+
+    return desc
 
   def GetTrueObservation(self):
     observation = []

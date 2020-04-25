@@ -120,6 +120,9 @@ class Minitaur(object):
   def _BuildOrderedMotorNameList(self):
     self._motor_name_id_list = {motor_name: self._joint_name_to_id[motor_name] for motor_name in MOTOR_NAMES}
 
+  def GetOrderedMotorNameList(self):
+    return  [[motor_name, self._joint_name_to_id[motor_name]] for motor_name in MOTOR_NAMES]
+
   def Reset(self, reload_urdf=True):
     """Reset the minitaur to its initial states.
 
