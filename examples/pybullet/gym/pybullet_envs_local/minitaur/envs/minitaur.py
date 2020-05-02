@@ -612,6 +612,8 @@ class Minitaur(object):
     if self._accurate_motor_model_enabled or self._pd_control_enabled:
       q, qdot = self._GetPDObservation()
       qdot_true = self.GetTrueMotorVelocities()
+
+      # convert commands to torque according to accurate motor model
       if self._accurate_motor_model_enabled:
         actual_torque, observed_torque = self._motor_model.convert_to_torque(
             motor_commands, q, qdot, qdot_true, motor_kps, motor_kds)
@@ -638,6 +640,9 @@ class Minitaur(object):
             self._SetMotorTorqueById(motor_id, motor_torque)
           else:
             self._SetMotorTorqueById(motor_id, 0)
+
+
+      # use simple model to create torque commands, set motors via torque control
       else:
         torque_commands = -1 * motor_kps * (q - motor_commands) - motor_kds * qdot
 
@@ -651,11 +656,17 @@ class Minitaur(object):
 
         for motor_id, motor_torque in zip(self._motor_id_list, self._applied_motor_torques):
           self._SetMotorTorqueById(motor_id, motor_torque)
+
+    # no model, no pd control, apply motor angles directly via position control
     else:
       motor_commands_with_direction = np.multiply(motor_commands, self._motor_direction)
       for motor_id, motor_command_with_direction in zip(self._motor_id_list,
                                                         motor_commands_with_direction):
         self._SetDesiredMotorAngleById(motor_id, motor_command_with_direction)
+
+  def GetLegModelInputDescription(self):
+    return ["s_front_left", "s_back_left", "s_front_right", "s_back_right",
+            "e_front_left", "e_back_left", "e_front_right", "e_back_right"]
 
   def ConvertFromLegModel(self, actions):
     """Convert the actions that use leg model to the real motor actions.
@@ -663,6 +674,8 @@ class Minitaur(object):
     Args:
       actions: The theta, phi of the leg model.
       action order: [e, e, e, e, s, s, s, s]
+      specifically: ["e_front_left", "e_back_left", "e_front_right", "e_back_right",
+                     "s_front_left", "s_back_left", "s_front_right", "s_back_right"]
     Returns:
       The eight desired motor angles that can be used in ApplyActions().
     """
@@ -679,25 +692,26 @@ class Minitaur(object):
     for i in range(self.num_motors):
       action_idx = int(i // 2)
 
-      # leg swing s - this only refers to action indices 4-8
+      # leg extension e - this only refers to action indices 4-8
       # independent of left/right motor per leg
-      forward_backward_component = (
+      # this is -1 * 0.785 * (0+1.5) = -1.17 if actions are 0
+      extension_component = (
           -scale_for_singularity * quarter_pi *
-          (actions[action_idx + half_num_motors] + offset_for_singularity))
+          (actions[action_idx + half_num_motors] + offset_for_singularity)
+      )
 
-      # leg extension e - this only refers to actions indexes 0-3
+      # leg swing s - this only refers to actions indexes 0-3
       #                     +-       45 degree   * range(-1 to 1)
-      # this will oscillate leg extension between -45 and 45 degree, or between 45 and -45 degree for each alternating motor
-      # the closer to 0, the longer the leg will be extended
-      # this needs to be offset by 180 degree for some motors
-      extension_component = (-1)**i * quarter_pi * actions[action_idx]
+      # this will oscillate leg swing between -45 and 45 degree, or between 45 and -45 degree for each alternating motor
+      # the closer to 0, the more central the leg position
+      swing_component = (-1)**i * quarter_pi * actions[action_idx]
 
       # all motors on right hand side of robot get a negative extension angle
       if i >= half_num_motors:
-        extension_component = -extension_component
+        swing_component = -swing_component
 
-      # starting position for 2 motors per leg are up and down positions respectively
-      # front_left_l_joint                180 degree +      x    +  (+)  45 * (-1 to 1) action 0 = 135 to 225
+      # starting position for 2 motors per leg are up, but env.reset() positions them to pi/2
+      # front_left_l_joint                180 degree +      -50 degree    +  (+)  45 * (-1 to 1) action 0 = 135 to 225
       # front_left_r_joint                180 degree +      x    +  (-)  45 * (-1 to 1) action 0 = 225 to 135
       # back_left_l_joint                 180 degree +      x    +  (+)  45 * (-1 to 1) action 1 = 135 to 225
       # back_left_r_joint                 180 degree +      x    +  (-)  45 * (-1 to 1) action 1 = 225 to 135
@@ -707,8 +721,10 @@ class Minitaur(object):
       # back_right_l_joint                 180 degree +      x    -  (+)  45 * (-1 to 1) action 3 = 225 to 135
       # back_right_r_joint                 180 degree +      x    -  (-)  45 * (-1 to 1) action 3 = 135 to 225
 
-
-      motor_angle[i] = (math.pi + forward_backward_component + extension_component)
+      # measurement for all motors start at the top
+      # default after reset is angles of pi/2=1.57 radian so 90 degree for each motor
+      # default if actions are 0 and leg model is used is 1.92 radian
+      motor_angle[i] = (math.pi + extension_component + swing_component)
 
       """
          motor order in motor_angle array
@@ -730,7 +746,9 @@ class Minitaur(object):
         goes to action index 3
         
         """
-
+    print(f"actions {np.array(actions).round(2)}")
+    print(f"angles: {np.array(motor_angle).round(2)}")
+    print(" ")
     return motor_angle
 
   def GetBaseMassesFromURDF(self):
@@ -888,13 +906,14 @@ class Minitaur(object):
       self._motor_model.set_viscous_damping(viscous_damping)
 
 
-  def GetObservationDescription(self):
+  def GetTrueObservationDescription(self):
     desc = []
     motor_names = np.array(self.GetOrderedMotorNameList())[:,0]
     desc.extend(["angle_" + name for name in motor_names])
     desc.extend(["vel_" + name for name in motor_names])
     desc.extend(["torque_" + name for name in motor_names])
     desc.extend(["x_orn", "y_orn", "z_orn", "theta_orn"])
+    desc.extend(["delta_roll", "delta_pitch", "delta_yaw"])
 
     return desc
 

@@ -222,7 +222,7 @@ class MinitaurGymEnv(gym.Env):
     self._ground_id = None
     self._reflection = reflection
     self._env_randomizers = convert_to_list(env_randomizer) if env_randomizer else []
-    self._episode_proto = minitaur_logging_pb2.MinitaurEpisode()
+    #self._episode_proto = minitaur_logging_pb2.MinitaurEpisode()
     if self._is_render:
       self._pybullet_client = bc.BulletClient(connection_mode=pybullet.GUI)
     else:
@@ -243,7 +243,8 @@ class MinitaurGymEnv(gym.Env):
 
   def close(self):
     if self._env_step_counter > 0:
-      self.logging.save_episode(self._episode_proto)
+      #self.logging.save_episode(self._episode_proto)
+      pass
     self.minitaur.Terminate()
 
   def add_env_randomizer(self, env_randomizer):
@@ -252,9 +253,10 @@ class MinitaurGymEnv(gym.Env):
   def reset(self, initial_motor_angles=None, reset_duration=1.0):
     self._pybullet_client.configureDebugVisualizer(self._pybullet_client.COV_ENABLE_RENDERING, 0)
     if self._env_step_counter > 0:
-      self.logging.save_episode(self._episode_proto)
-    self._episode_proto = minitaur_logging_pb2.MinitaurEpisode()
-    minitaur_logging.preallocate_episode_proto(self._episode_proto, self._num_steps_to_log)
+      #self.logging.save_episode(self._episode_proto)
+      pass
+    #self._episode_proto = minitaur_logging_pb2.MinitaurEpisode()
+    #minitaur_logging.preallocate_episode_proto(self._episode_proto, self._num_steps_to_log)
     if self._hard_reset:
       self._pybullet_client.resetSimulation()
       self._pybullet_client.setPhysicsEngineParameter(
@@ -319,7 +321,7 @@ class MinitaurGymEnv(gym.Env):
       action = self.minitaur.ConvertFromLegModel(action)
     return action
 
-  def step(self, action):
+  def step(self, action, reset_camera=True):
     """Step forward the simulation, given the action.
 
     Args:
@@ -348,18 +350,22 @@ class MinitaurGymEnv(gym.Env):
       base_pos = self.minitaur.GetBasePosition()
       # Keep the previous orientation of the camera set by the user.
       [yaw, pitch, dist] = self._pybullet_client.getDebugVisualizerCamera()[8:11]
-      self._pybullet_client.resetDebugVisualizerCamera(dist, yaw, pitch, base_pos)
+      if reset_camera:
+        self._pybullet_client.resetDebugVisualizerCamera(dist, yaw, pitch, base_pos)
 
     for env_randomizer in self._env_randomizers:
       env_randomizer.randomize_step(self)
 
+    # convert leg space values to motor space values (angles)
     action = self._transform_action_to_motor_command(action)
+
     self.minitaur.Step(action)
     reward = self._reward()
     done = self._termination()
     if self._log_path is not None:
-      minitaur_logging.update_episode_proto(self._episode_proto, self.minitaur, action,
-                                            self._env_step_counter)
+      #minitaur_logging.update_episode_proto(self._episode_proto, self.minitaur, action,
+      #                                      self._env_step_counter)
+      pass
     self._env_step_counter += 1
     if done:
       self.minitaur.Terminate()
@@ -502,6 +508,16 @@ class MinitaurGymEnv(gym.Env):
     observation.extend(list(self.minitaur.GetBaseOrientation()))
     self._observation = observation
     return self._observation
+
+  def _get_observation_description(self):
+    desc = []
+    motor_names = np.array(self.minitaur.GetOrderedMotorNameList())[:,0]
+    desc.extend(["angle_" + name for name in motor_names])
+    desc.extend(["vel_" + name for name in motor_names])
+    desc.extend(["torque_" + name for name in motor_names])
+    desc.extend(["x_orn", "y_orn", "z_orn", "theta_orn"])
+    #desc.extend(["delta_roll", "delta_pitch", "delta_yaw"])
+    return desc
 
   def _get_true_observation(self):
     """Get the observations of this environment.
