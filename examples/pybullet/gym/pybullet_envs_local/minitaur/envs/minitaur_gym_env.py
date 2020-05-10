@@ -230,6 +230,7 @@ class MinitaurGymEnv(gym.Env):
     if self._urdf_version is None:
       self._urdf_version = DEFAULT_URDF_VERSION
     self._pybullet_client.setPhysicsEngineParameter(enableConeFriction=0)
+    self._pybullet_client.configureDebugVisualizer(pybullet.COV_ENABLE_GUI, 0)
     self.seed()
     self.reset()
     observation_high = (self._get_observation_upper_bound() + OBSERVATION_EPS)

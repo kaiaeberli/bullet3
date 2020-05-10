@@ -668,14 +668,14 @@ class Minitaur(object):
     return ["s_front_left", "s_back_left", "s_front_right", "s_back_right",
             "e_front_left", "e_back_left", "e_front_right", "e_back_right"]
 
-  def ConvertFromLegModel(self, actions):
+  def ConvertFromLegModel(self, actions, debug=False):
     """Convert the actions that use leg model to the real motor actions.
 
     Args:
       actions: The theta, phi of the leg model.
-      action order: [e, e, e, e, s, s, s, s]
-      specifically: ["e_front_left", "e_back_left", "e_front_right", "e_back_right",
-                     "s_front_left", "s_back_left", "s_front_right", "s_back_right"]
+      action order: [s, s, s, s, e, e, e, e]
+      specifically: [ "s_front_left", "s_back_left", "s_front_right", "s_back_right",
+                     "e_front_left", "e_back_left", "e_front_right", "e_back_right",]
     Returns:
       The eight desired motor angles that can be used in ApplyActions().
     """
@@ -692,6 +692,20 @@ class Minitaur(object):
     for i in range(self.num_motors):
       action_idx = int(i // 2)
 
+
+      # leg swing s - this only refers to actions indexes 0-3
+      #                     +-       45 degree   * range(-1 to 1)
+      # this will oscillate leg swing between -45 and 45 degree, or between 45 and -45 degree for each alternating motor
+      # the closer to 0, the more central the leg position
+      swing_component = (-1) ** i * quarter_pi * actions[action_idx]
+
+      # all motors on right hand side of robot get a negative extension angle
+      if i >= half_num_motors:
+        swing_component = -swing_component
+
+
+
+
       # leg extension e - this only refers to action indices 4-8
       # independent of left/right motor per leg
       # this is -1 * 0.785 * (0+1.5) = -1.17 if actions are 0
@@ -700,15 +714,9 @@ class Minitaur(object):
           (actions[action_idx + half_num_motors] + offset_for_singularity)
       )
 
-      # leg swing s - this only refers to actions indexes 0-3
-      #                     +-       45 degree   * range(-1 to 1)
-      # this will oscillate leg swing between -45 and 45 degree, or between 45 and -45 degree for each alternating motor
-      # the closer to 0, the more central the leg position
-      swing_component = (-1)**i * quarter_pi * actions[action_idx]
 
-      # all motors on right hand side of robot get a negative extension angle
-      if i >= half_num_motors:
-        swing_component = -swing_component
+
+
 
       # starting position for 2 motors per leg are up, but env.reset() positions them to pi/2
       # front_left_l_joint                180 degree +      -50 degree    +  (+)  45 * (-1 to 1) action 0 = 135 to 225
@@ -746,9 +754,10 @@ class Minitaur(object):
         goes to action index 3
         
         """
-    print(f"actions {np.array(actions).round(2)}")
-    print(f"angles: {np.array(motor_angle).round(2)}")
-    print(" ")
+    if debug:
+      print(f"actions {np.array(actions).round(2)}")
+      print(f"angles: {np.array(motor_angle).round(2)}")
+      print(" ")
     return motor_angle
 
   def GetBaseMassesFromURDF(self):
