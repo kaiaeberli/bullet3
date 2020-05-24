@@ -16,17 +16,12 @@ import pandas as pd, numpy as np
 import time
 import pybullet_utils.bullet_client as bc
 import matplotlib.pyplot as plt
-from IPython.display import Markdown
-from IPython.display import clear_output
-from jupyter_ui_poll import ui_events
+
 
 from functools import partial
 
-from jupyterplot import ProgressPlot
-from ipywidgets import interact, interactive, fixed, interact_manual, Layout, VBox, HBox
-import ipywidgets as widgets
 
-import dask.dataframe as dd
+
 import plotly.express as px
 
 def run_jump_on_the_spot(steps, freq=5):
